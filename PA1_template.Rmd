@@ -79,6 +79,6 @@ mean(dailysteps$steps)
 median(dailysteps$steps)
 ```
 
-This shows how removing NA values from data can skew summary data, especially when summing data points is involved. The mean and median values of a data set will be artificially skewed by a large number of removed data points because the daily sum will be artificially lower.
+This shows how removing NA values from data can skew summary data, especially when summing data points is involved. The mean and median values of a data set will be skewed  because the daily sum of data with points removed will be artificially reduced.
 
 ## Are there differences in activity patterns between weekdays and weekends?
