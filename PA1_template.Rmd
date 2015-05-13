@@ -7,16 +7,41 @@ output:
 
 
 ## Loading and preprocessing the data
+Set up libraries used in this analysis.
+```{r setup}
+library(plyr); library(dplyr); 
+```
 
+Unzip "activity.zip" and load the data in file activity.csv.
+```{r loaddata}
+setwd("~/../datascience/RepData_PeerAssessment1")
+fname <- unzip("activity.zip")
+activity <- read.csv(fname)
+```
 
+Format the date column.
+```{r processdata}
+activity <- mutate(activity, date=as.Date(date))
+```
 
 ## What is mean total number of steps taken per day?
-
-
+```{r meansteps}
+dailysteps <- activity %>% 
+    group_by(date) %>% 
+    summarize(steps=sum(steps, na.rm=TRUE)) 
+hist(dailysteps$steps, breaks=10,
+     col="lightblue", main="Total Daily Steps", xlab="steps")
+mean(dailysteps$steps)
+median(dailysteps$steps)
+```
 
 ## What is the average daily activity pattern?
-
-
+```{r activitypattern}
+activitypattern <- activity %>%
+    group_by(interval) %>%
+    summarize(steps=mean(steps, na.rm=TRUE))
+plot(activitypattern$interval,activitypattern$steps, type="l")
+```
 
 ## Imputing missing values
 
