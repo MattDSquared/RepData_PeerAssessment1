@@ -69,12 +69,25 @@ median(dailysteps$steps)
 ```
 
 ## What is the average daily activity pattern?
+Which interval is the most active, on average?
 
 ```r
 activitypattern <- activity %>%
     group_by(interval) %>%
     summarize(steps=mean(steps, na.rm=TRUE))
-plot(activitypattern$interval,activitypattern$steps, type="l")
+plot(activitypattern$interval,activitypattern$steps, type="l", col="blue")
+mostactive.idx <- which.max(activitypattern$steps)
+activitypattern$interval[mostactive.idx]
+```
+
+```
+## [1] 835
+```
+
+```r
+points(activitypattern$interval[mostactive.idx], 
+       activitypattern$steps[mostactive.idx], 
+       pch=4, col="red")
 ```
 
 ![](PA1_template_files/figure-html/activitypattern-1.png) 

@@ -36,11 +36,17 @@ median(dailysteps$steps)
 ```
 
 ## What is the average daily activity pattern?
+Which interval is the most active, on average?
 ```{r activitypattern}
 activitypattern <- activity %>%
     group_by(interval) %>%
     summarize(steps=mean(steps, na.rm=TRUE))
-plot(activitypattern$interval,activitypattern$steps, type="l")
+plot(activitypattern$interval,activitypattern$steps, type="l", col="blue")
+mostactive.idx <- which.max(activitypattern$steps)
+activitypattern$interval[mostactive.idx]
+points(activitypattern$interval[mostactive.idx], 
+       activitypattern$steps[mostactive.idx], 
+       pch=4, col="red")
 ```
 
 ## Imputing missing values
