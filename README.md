@@ -36,15 +36,13 @@ The variables included in this dataset are:
 * **interval**: Identifier for the 5-minute interval in which
     measurement was taken
 
-
-
-
 The dataset is stored in a comma-separated-value (CSV) file and there
 are a total of 17,568 observations in this
 dataset.
 
-
 ## Assignment
+
+Completed output can be viewed at [PA1_template.md](https://github.com/MattDSquared/RepData_PeerAssessment1/blob/master/PA1_template.md)  
 
 This assignment will be described in multiple parts. You will need to
 write a report that answers the questions detailed below. Ultimately,
