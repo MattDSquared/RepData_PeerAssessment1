@@ -46,10 +46,10 @@ activitypattern <- activity %>%
     summarize(steps=mean(steps, na.rm=TRUE))
 mostactive.idx <- which.max(activitypattern$steps)
 activitypattern$interval[mostactive.idx]
-plot(activitypattern$interval,activitypattern$steps, type="l", col="blue")
-points(activitypattern$interval[mostactive.idx], 
-       activitypattern$steps[mostactive.idx], 
-       pch=4, col="red")
+with(activitypattern, plot(interval,steps, type="l", col="blue"))
+with(activitypattern, points(interval[mostactive.idx], 
+       steps[mostactive.idx], 
+       pch=4, col="red"))
 ```
 
 ## Imputing missing values

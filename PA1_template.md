@@ -90,10 +90,10 @@ activitypattern$interval[mostactive.idx]
 ```
 
 ```r
-plot(activitypattern$interval,activitypattern$steps, type="l", col="blue")
-points(activitypattern$interval[mostactive.idx], 
-       activitypattern$steps[mostactive.idx], 
-       pch=4, col="red")
+with(activitypattern, plot(interval,steps, type="l", col="blue"))
+with(activitypattern, points(interval[mostactive.idx], 
+       steps[mostactive.idx], 
+       pch=4, col="red"))
 ```
 
 ![](PA1_template_files/figure-html/activitypattern-1.png) 
@@ -166,14 +166,20 @@ Panel plot showing difference between weekend and weekday activity.
 ```r
 activitypattern2 <- activity2 %>%
     group_by(weekend, interval) %>%
-    summarize(steps=mean(steps, na.rm=TRUE))
+    summarize(steps=mean(steps))
 peakactivity2 <- activitypattern2 %>%
     group_by(weekend) %>%
     summarize(Interval=interval[which.max(steps)], Steps=max(steps))
+meanactivity2 <- activity2 %>%
+    group_by(weekend, date) %>%
+    summarize(steps=sum(steps)) %>%
+    group_by(weekend) %>%
+    summarize(steps=mean(steps))
 gg <- ggplot(activitypattern2, aes(interval, steps)) + 
     facet_grid(weekend~.) + 
     geom_line(col="blue") +
-    geom_point(data=peakactivity2, aes(Interval, Steps), shape=4, color="red")
+    geom_point(data=peakactivity2, aes(Interval, Steps), 
+               shape=4, color="red") 
 print(gg)
 ```
 
